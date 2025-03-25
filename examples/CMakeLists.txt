@@ -94,6 +94,19 @@ if(BUILD_TESTING)
     LABELS medium
     TIMEOUT 60)
 
+  add_executable(Circle_test Circle_test.cc)
+  target_compile_definitions(Circle_test PRIVATE
+    ${RVO_EXAMPLES_COMPILE_DEFINITIONS})
+  target_link_libraries(Circle_test PRIVATE ${RVO_LIBRARY})
+  target_compile_options(Circle_test PRIVATE ${RVO_EXAMPLES_COMPILE_OPTIONS})
+  set_target_properties(Circle_test PROPERTIES
+    INTERPROCEDURAL_OPTIMIZATION ${RVO_EXAMPLES_INTERPROCEDURAL_OPTIMIZATION}
+    LINK_FLAGS "${RVO_EXAMPLES_LINK_FLAGS}")
+  add_test(NAME Circle_test COMMAND Circle_test)
+  set_tests_properties(Circle_test PROPERTIES
+    LABELS medium
+    TIMEOUT 60)
+
   add_executable(Roadmap Roadmap.cc)
   target_compile_definitions(Roadmap PRIVATE
     ${RVO_EXAMPLES_COMPILE_DEFINITIONS})
